@@ -28,7 +28,14 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+# facilitate authentication
 gem 'devise'
+
+# Handles token authentication with devise
+gem 'simple_token_authentication', '~> 1.0' # see semver.org
+
+# allow cross origin resource sharing
+gem 'rack-cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
