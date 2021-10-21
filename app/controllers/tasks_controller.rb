@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
     def index
         tasks = Task.all
+        puts tasks[0].task_name
+        render json: tasks
     end
 
     def create
@@ -9,15 +11,13 @@ class TasksController < ApplicationController
             description: params[:task][:description], 
             progress: params[:task][:progress]
             )
-        puts(@task.task_name)
         if(@task.save)
             params[:task][:todos].each do |todo|
                 @task.todos.create(
-                    checked: params[:task][:todos][:checked],
-                    value: params[:task][:todos][:value]
-                    )
-                end
-            puts('saved~~~~~~~~~~')
+                    checked: todo[:checked],
+                    value: todo[:value]
+                )
+            end
             render json: {status: 'OK'}, status: :created 
         else
             head(:unprocessable_entity)     
@@ -25,10 +25,6 @@ class TasksController < ApplicationController
     end
 
     def show
-
-    end
-
-    def destroy
 
     end
 

@@ -17,5 +17,5 @@ class Task < ApplicationRecord
     validates :description, length: {maximum: 100}
     validates :progress, numericality: {only_integer: true, less_than_or_equal_to: 100, greater_than_or_equal_to: 0}
 
-    has_many :todos
+    has_many :todos, dependent: :destroy
 end
