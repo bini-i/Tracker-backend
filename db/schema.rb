@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2021_10_19_043355) do
   create_table "todos", force: :cascade do |t|
     t.string "value", null: false
     t.boolean "checked", null: false
-    t.bigint "task_id"
+    t.bigint "task_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["task_id"], name: "index_todos_on_task_id"
