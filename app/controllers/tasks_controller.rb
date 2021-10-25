@@ -1,7 +1,6 @@
 class TasksController < ApplicationController
     def index
         tasks = Task.all
-        puts tasks[0].task_name
         render json: tasks
     end
 
@@ -24,8 +23,18 @@ class TasksController < ApplicationController
         end
     end
 
-    def show
-
+    def update
+        @task = Task.find(params[:task][:id])
+        byebug
+        if(@task.update(
+            task_name: params[:task][:task_name], 
+            description: params[:task][:description], 
+            progress: params[:task][:progress]
+            ))
+            render json: {status: 'OK'}, status: :ok 
+        else 
+            head(:unprocessable_entity)     
+        end
     end
 
     private
