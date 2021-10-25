@@ -1,7 +1,15 @@
 class TasksController < ApplicationController
     def index
         tasks = Task.all
-        render json: tasks
+        all_tasks_json = []
+        tasks.each do |task|
+            task_json = task.as_json
+            task_json["todos"] = task.todos.as_json
+            
+            all_tasks_json.push(task_json)
+        end
+        puts all_tasks_json
+        render json: all_tasks_json
     end
 
     def create
