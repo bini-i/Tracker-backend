@@ -8,7 +8,6 @@ class TasksController < ApplicationController
             
             all_tasks_json.push(task_json)
         end
-        puts all_tasks_json
         render json: all_tasks_json
     end
 
@@ -33,14 +32,23 @@ class TasksController < ApplicationController
 
     def update
         @task = Task.find(params[:task][:id])
-        byebug
         if(@task.update(
             task_name: params[:task][:task_name], 
             description: params[:task][:description], 
             progress: params[:task][:progress]
             ))
+            
+            params[:task][:todos].each do |todo|
+                @todo = Todo.find(todo[:id])
+                @todo.update(
+                    checked: todo[:checked],
+                    value: todo[:value]
+                )
+            end
+
             render json: {status: 'OK'}, status: :ok 
         else 
+            puts @task.errors.full_messages
             head(:unprocessable_entity)     
         end
     end
