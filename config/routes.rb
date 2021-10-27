@@ -24,6 +24,7 @@
 #                          DELETE /tasks/:id(.:format)           tasks#destroy
 #                 sessions POST   /sessions(.:format)            sessions#create
 #                  session DELETE /sessions/:id(.:format)        sessions#destroy
+#                 accounts POST   /accounts(.:format)            accounts#create
 
 Rails.application.routes.draw do
   devise_for :users
@@ -32,4 +33,5 @@ Rails.application.routes.draw do
   resources :tasks, only: [:index, :show, :create, :update, :destroy]
 
   resources :sessions, only: [:create, :destroy]
+  resources :accounts, only: [:create]
 end
