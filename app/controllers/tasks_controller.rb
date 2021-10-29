@@ -40,10 +40,17 @@ class TasksController < ApplicationController
             
             params[:task][:todos].each do |todo|
                 @todo = Todo.find(todo[:id])
-                @todo.update(
-                    checked: todo[:checked],
-                    value: todo[:value]
-                )
+                if(@todo)
+                    @todo.update(
+                        checked: todo[:checked],
+                        value: todo[:value]
+                    )
+                else
+                    @task.todos.create(
+                        checked: todo[:checked],
+                        value: todo[:value]
+                    )
+                end
             end
 
             render json: {status: 'OK'}, status: :ok 
