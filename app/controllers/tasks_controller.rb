@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
     def index
-        tasks = Task.all
+        tasks = current_user.tasks
         all_tasks_json = []
         tasks.each do |task|
             task_json = task.as_json
@@ -12,7 +12,8 @@ class TasksController < ApplicationController
     end
 
     def create
-        @task = Task.new(
+        # byebug
+        @task = current_user.tasks.create(
             task_name: params[:task][:task_name], 
             description: params[:task][:description], 
             progress: params[:task][:progress]
