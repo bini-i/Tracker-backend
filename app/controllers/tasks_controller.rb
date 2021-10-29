@@ -12,7 +12,6 @@ class TasksController < ApplicationController
     end
 
     def create
-        # byebug
         @task = current_user.tasks.create(
             task_name: params[:task][:task_name], 
             description: params[:task][:description], 
@@ -25,7 +24,7 @@ class TasksController < ApplicationController
                     value: todo[:value]
                 )
             end
-            render json: {status: 'OK'}, status: :created 
+            render json: {id: @task.id, todos: @task.todos}, status: :created 
         else
             head(:unprocessable_entity)     
         end
