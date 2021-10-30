@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: todos
@@ -17,7 +19,7 @@
 #
 #  fk_rails_...  (task_id => tasks.id)
 #
-require "test_helper"
+require 'test_helper'
 
 class TodoTest < ActiveSupport::TestCase
   # test "the truth" do

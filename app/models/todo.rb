@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: todos
@@ -18,5 +20,5 @@
 #  fk_rails_...  (task_id => tasks.id)
 #
 class Todo < ApplicationRecord
-    belongs_to :task
+  belongs_to :task
 end

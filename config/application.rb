@@ -1,12 +1,12 @@
-require_relative "boot"
+# frozen_string_literal: true
+
+require_relative 'boot'
 
 # frozen_string_literal: true
 
-# rubocop:disable Style/RedundantBegin
+require 'rails'
 
-require "rails"
-
-%w(
+%w[
   active_record/railtie
   action_controller/railtie
   action_view/railtie
@@ -15,11 +15,10 @@ require "rails"
   action_cable/engine
   rails/test_unit/railtie
   sprockets/railtie
-).each do |railtie|
-  begin
-    require railtie
-  rescue LoadError
-  end
+].each do |railtie|
+  require railtie
+rescue LoadError
+  puts 'rescued'
 end
 
 # Require the gems listed in Gemfile, including any gems
