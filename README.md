@@ -27,7 +27,7 @@ This project is a rails app which allows users to create tasks along with a list
 
 ## Live Demo
 
-[Live Demo Link]()
+[Live Demo Link](https://tasks-trackers.herokuapp.com/)
 
 ## Getting Started
 
