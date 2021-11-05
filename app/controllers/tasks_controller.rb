@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class TasksController < ApplicationController
   def index
     tasks = current_user.tasks
@@ -43,15 +41,9 @@ class TasksController < ApplicationController
       params[:task][:todos].each do |todo|
         @todo = Todo.find(todo[:id])
         if @todo
-          @todo.update(
-            checked: todo[:checked],
-            value: todo[:value]
-          )
+          @todo.update(checked: todo[:checked], value: todo[:value])
         else
-          @task.todos.create(
-            checked: todo[:checked],
-            value: todo[:value]
-          )
+          @task.todos.create(checked: todo[:checked], value: todo[:value])
         end
       end
 

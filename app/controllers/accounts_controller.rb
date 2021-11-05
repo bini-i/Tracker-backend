@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AccountsController < ApplicationController
   def create
     @user = User.create(email: params[:email], password: params[:password])
